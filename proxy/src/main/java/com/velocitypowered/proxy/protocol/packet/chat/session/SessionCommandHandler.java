@@ -45,12 +45,12 @@ public class SessionCommandHandler implements CommandHandler<SessionPlayerComman
       CommandExecuteEvent.CommandResult result = event.getResult();
       if (result == CommandExecuteEvent.CommandResult.denied()) {
         if (packet.isSigned()) {
-          logger.fatal("A plugin tried to deny a command with signable component(s). "
-              + "This is not supported. "
-              + "Disconnecting player " + player.getUsername());
-          player.disconnect(Component.text(
-              "A proxy plugin caused an illegal protocol state. "
-                  + "Contact your network administrator."));
+          //logger.fatal("A plugin tried to deny a command with signable component(s). "
+          //    + "This is not supported. "
+          //    + "Disconnecting player " + player.getUsername());
+          //player.disconnect(Component.text(
+          //    "A proxy plugin caused an illegal protocol state. "
+          //        + "Contact your network administrator."));
         }
         return CompletableFuture.completedFuture(null);
       }
