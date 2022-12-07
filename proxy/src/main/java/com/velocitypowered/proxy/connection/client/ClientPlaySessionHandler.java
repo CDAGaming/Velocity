@@ -211,11 +211,11 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
             }
           } else {
             if (playerKey != null && playerKey.getKeyRevision().compareTo(IdentifiedKey.Revision.LINKED_V2) >= 0) {
-              logger.fatal("A plugin tried to cancel a signed chat message."
-                  + " This is no longer possible in 1.19.1 and newer. "
-                  + "Disconnecting player " + player.getUsername());
-              player.disconnect(Component.text("A proxy plugin caused an illegal protocol state. "
-                  + "Contact your network administrator."));
+              //logger.fatal("A plugin tried to cancel a signed chat message."
+              //    + " This is no longer possible in 1.19.1 and newer. "
+              //    + "Disconnecting player " + player.getUsername());
+              //player.disconnect(Component.text("A proxy plugin caused an illegal protocol state. "
+              //    + "Contact your network administrator."));
             }
           }
           return null;
@@ -747,11 +747,11 @@ public class ClientPlaySessionHandler implements MinecraftSessionHandler {
       if (playerKey != null) {
         if (signedCommand != null && playerKey.getKeyRevision()
             .compareTo(IdentifiedKey.Revision.LINKED_V2) >= 0) {
-          logger.fatal("A plugin tried to deny a command with signable component(s). "
-              + "This is not supported. "
-              + "Disconnecting player " + player.getUsername());
-          player.disconnect(Component.text("A proxy plugin caused an illegal protocol state. "
-              + "Contact your network administrator."));
+          //logger.fatal("A plugin tried to deny a command with signable component(s). "
+          //    + "This is not supported. "
+          //    + "Disconnecting player " + player.getUsername());
+          //player.disconnect(Component.text("A proxy plugin caused an illegal protocol state. "
+          //    + "Contact your network administrator."));
         }
       }
       return CompletableFuture.completedFuture(null);
