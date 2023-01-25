@@ -52,7 +52,7 @@ public class KeyedCommandHandler implements CommandHandler<KeyedPlayerCommand> {
           //      + "Disconnecting player " + player.getUsername());
           //  player.disconnect(Component.text(
           //      "A proxy plugin caused an illegal protocol state. " + "Contact your network administrator."));
-          }
+          //}
         }
         return CompletableFuture.completedFuture(null);
       }
