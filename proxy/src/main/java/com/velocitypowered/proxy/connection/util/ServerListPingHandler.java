@@ -85,6 +85,26 @@ public class ServerListPingHandler {
           }
           return fallback;
         });
+      case EXCLUDE_PLAYERS:
+        return pingResponses.thenApply(responses -> {
+          // Find the first non-fallback, excluding the player count from it
+          ServerPing.Players players = null;
+          for (ServerPing response : responses) {
+            ServerPing.Players playerResponse = response.getPlayers().orElse(null);
+            if (players != null) {
+              players.merge(playerResponse);
+            } else {
+              players = playerResponse;
+            }
+          }
+          return new ServerPing(
+                  fallback.getVersion(),
+                  players,
+                  fallback.getDescriptionComponent(),
+                  fallback.getFavicon().orElse(null),
+                  fallback.getModinfo().orElse(null)
+          );
+        });
       case MODS:
         return pingResponses.thenApply(responses -> {
           // Find the first non-fallback that contains a mod list

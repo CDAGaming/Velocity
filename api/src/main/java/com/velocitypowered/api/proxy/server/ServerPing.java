@@ -354,8 +354,8 @@ public final class ServerPing {
 
   public static final class Players {
 
-    private final int online;
-    private final int max;
+    private int online;
+    private int max;
     private final List<SamplePlayer> sample;
 
     /**
@@ -407,6 +407,18 @@ public final class ServerPing {
     @Override
     public int hashCode() {
       return Objects.hash(online, max, sample);
+    }
+
+    /**
+     * Merge two Player Responses together.
+     *
+     * @param orElse the other {@link Players} response.
+     */
+    public void merge(@Nullable Players orElse) {
+      if (orElse != null) {
+        online += orElse.online;
+        max = online + 1;
+      }
     }
   }
 
