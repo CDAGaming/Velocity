@@ -417,7 +417,9 @@ public final class ServerPing {
     public void merge(@Nullable Players orElse) {
       if (orElse != null) {
         online += orElse.online;
-        max = online + 1;
+        //if (online > max) {
+        //  max = online + 1;
+        //}
       }
     }
   }

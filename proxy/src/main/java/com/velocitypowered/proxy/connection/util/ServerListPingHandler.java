@@ -88,13 +88,15 @@ public class ServerListPingHandler {
       case EXCLUDE_PLAYERS:
         return pingResponses.thenApply(responses -> {
           // Find the first non-fallback, excluding the player count from it
-          ServerPing.Players players = null;
+          ServerPing.Players players = fallback.getPlayers().orElse(null);
           for (ServerPing response : responses) {
-            ServerPing.Players playerResponse = response.getPlayers().orElse(null);
-            if (players != null) {
-              players.merge(playerResponse);
-            } else {
-              players = playerResponse;
+            if (response != fallback) {
+              ServerPing.Players playerResponse = response.getPlayers().orElse(null);
+              if (players != null) {
+                players.merge(playerResponse);
+              } else {
+                players = playerResponse;
+              }
             }
           }
           return new ServerPing(
